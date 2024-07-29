@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
   const AddTaskBottomSheet({super.key});
@@ -11,97 +12,135 @@ class AddTaskBottomSheet extends StatefulWidget {
 
 class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   DateTime selectedDate = DateTime.now();
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    var height= MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 15),
-            AnimatedTextKit(
-              animatedTexts: [
-                TypewriterAnimatedText(
-                  textAlign: TextAlign.center,
-                  "Add New Task",
-                  textStyle: Theme.of(context).textTheme.bodyLarge,
-                  speed: const Duration(milliseconds: 500),
-                ),
-              ],
-              totalRepeatCount: Duration.millisecondsPerSecond,
-              pause: const Duration(milliseconds: 1000),
-              displayFullTextOnTap: true,
-              stopPauseOnTap: true,
-            ),
-            const SizedBox(height: 15),
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                enabledBorder:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
-                label: Text(
-                  "Enter Your task",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: AppColors.primaryColor),
+        child: Form(
+          key: formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 15),
+              AnimatedTextKit(
+                animatedTexts: [
+                  TypewriterAnimatedText(
+                    textAlign: TextAlign.center,
+                    AppLocalizations.of(context)!.add_new_task,
+                    textStyle: Theme.of(context).textTheme.bodyLarge,
+                    speed: const Duration(milliseconds: 100),
+                  ),
+                ],
+                totalRepeatCount: Duration.millisecondsPerSecond,
+                pause: const Duration(milliseconds: 100),
+                displayFullTextOnTap: true,
+                stopPauseOnTap: true,
+              ),
+              const SizedBox(height: 15),
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please Enter Your Task";
+                  } else {
+                    return null;
+                  }
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: BorderSide(
+                        color: AppColors.primaryColor,
+                      )),
+                  label: Text(
+                    AppLocalizations.of(context)!.enter_your_task,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: AppColors.primaryColor),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 30),
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                enabledBorder:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
-                label: Text(
-                  "Description",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: AppColors.primaryColor),
-                ),
-              ),
-            ),
-            const SizedBox(height: 30),
-            Text(
-              "Select Time",
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            const SizedBox(height: 30),
-            InkWell(
-              onTap: () {
-                showDateFun();
-              },
-              child: Text(
-                selectedDate.toString().substring(0, 10),
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              const SizedBox(height: 30),
+              TextFormField(
+                maxLines: 4,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please Enter Your Description";
+                  } else {
+                    return null;
+                  }
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(18),
+                    borderSide: BorderSide(
                       color: AppColors.primaryColor,
                     ),
-                textAlign: TextAlign.center,
+                  ),
+                  label: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.description,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(color: AppColors.primaryColor),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor:
-                      WidgetStatePropertyAll(AppColors.primaryColor)),
-              onPressed: () {},
-              child: Text(
-                "Add Task",
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.whiteColor,
-                    ),
+              const SizedBox(height: 30),
+              Text(
+                AppLocalizations.of(context)!.select_time,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
-            )
-          ],
+              const SizedBox(height: 30),
+              InkWell(
+                onTap: () {
+                  showDateFun();
+                },
+                child: Text(
+                  selectedDate.toString().substring(0, 10),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: AppColors.primaryColor,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 30),
+              SizedBox(
+               height: height*0.06,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          WidgetStatePropertyAll(AppColors.primaryColor)),
+                  onPressed: () {
+                    addNewTask();
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.add_task,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppColors.whiteColor,
+                        ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+            ],
+          ),
         ),
       ),
     );
@@ -129,6 +168,11 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
     if (chosenDate != null) {
       selectedDate = chosenDate;
       setState(() {});
+    }
+  }
+
+  void addNewTask() {
+    if(formKey.currentState?.validate()==true){
     }
   }
 }
