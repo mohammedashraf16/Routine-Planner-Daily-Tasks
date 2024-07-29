@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/app_colors.dart';
-import 'package:todo_app/generated/assets.dart';
+import 'package:todo_app/providers/app_config_provider.dart';
 
 class TaskItem extends StatelessWidget {
   const TaskItem({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AppConfigProvider provider = Provider.of<AppConfigProvider>(context);
     return Container(
         margin: const EdgeInsets.symmetric(horizontal: 15),
         height: 120,
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: AppColors.whiteColor,
+            color: provider.isDark()
+                ? AppColors.blackDarkColor
+                : AppColors.whiteColor,
             boxShadow: const [
               BoxShadow(
                   color: Colors.black54,
@@ -62,8 +66,8 @@ class TaskItem extends StatelessWidget {
                   children: [
                     Text(
                       "Task Title",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.blackColor,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: AppColors.primaryColor,
                           ),
                     ),
                     Text(
@@ -85,11 +89,10 @@ class TaskItem extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     )),
-                child: ImageIcon(
-                  const AssetImage(
-                    Assets.imagesIconCheck,
-                  ),
-                  color: AppColors.whiteColor,
+                child: const Icon(
+                  Icons.check,
+                  color: Colors.white,
+                  size: 40,
                 ),
               ),
               const SizedBox(

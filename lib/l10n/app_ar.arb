@@ -1,0 +1,21 @@
+{
+  "app_title": "قوائم المهام",
+  "tasks": "المهمات",
+  "settings": "الاعدادات",
+  "add_new_task": "اضف مهمه جديده",
+  "select_time":"حدد الوقت",
+  "language": "اللغه",
+  "english": "الانجليزيه",
+  "arabic": "العربيه",
+  "mode": "الوضع",
+  "dark":"مظلم",
+  "light": "مضئ",
+  "edit_task": "تعديل المهمه",
+  "add_task": "اضف المهمه",
+  "save_changes": "حفظ التعديلات",
+  "done": "تم",
+  "delete":"ازاله",
+  "edit": "تعديل",
+  "enter_your_task": "ادخل مهمتك",
+  "description": "وصف المهمه"
+}
