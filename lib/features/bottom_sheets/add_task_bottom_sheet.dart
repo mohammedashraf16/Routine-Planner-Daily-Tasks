@@ -2,6 +2,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo_app/features/home/firebase_functions.dart';
+import 'package:todo_app/features/home/model/tasks_model.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
   const AddTaskBottomSheet({super.key});
@@ -13,10 +15,12 @@ class AddTaskBottomSheet extends StatefulWidget {
 class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   DateTime selectedDate = DateTime.now();
   var formKey = GlobalKey<FormState>();
+  var titleController = TextEditingController();
+  var descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var height= MediaQuery.of(context).size.height;
+    var height = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: SingleChildScrollView(
@@ -43,6 +47,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               ),
               const SizedBox(height: 15),
               TextFormField(
+                controller: titleController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please Enter Your Task";
@@ -70,6 +75,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               ),
               const SizedBox(height: 30),
               TextFormField(
+                controller: descriptionController,
                 maxLines: 4,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -122,13 +128,22 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               ),
               const SizedBox(height: 30),
               SizedBox(
-               height: height*0.06,
+                height: height * 0.06,
                 child: ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor:
                           WidgetStatePropertyAll(AppColors.primaryColor)),
                   onPressed: () {
-                    addNewTask();
+                    print(selectedDate);
+                    TaskModel model = TaskModel(
+                        title: titleController.text,
+                        description: descriptionController.text,
+                        date: DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch);
+                    FirebaseFunctions.addTask(model).then(
+                      (value) {
+                        Navigator.pop(context);
+                      },
+                    );
                   },
                   child: Text(
                     AppLocalizations.of(context)!.add_task,
@@ -172,7 +187,6 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   }
 
   void addNewTask() {
-    if(formKey.currentState?.validate()==true){
-    }
+    if (formKey.currentState?.validate() == true) {}
   }
 }

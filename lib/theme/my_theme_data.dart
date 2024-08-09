@@ -22,6 +22,9 @@ class MyThemeData {
           color: AppColors.whiteColor,
         )),
       ),
+      bottomAppBarTheme: BottomAppBarTheme(
+        color: AppColors.whiteColor,
+      ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           selectedItemColor: AppColors.primaryColor,
           unselectedItemColor: Colors.grey,
@@ -73,6 +76,9 @@ class MyThemeData {
         elevation: 0),
     bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white),
     iconTheme: IconThemeData(color: AppColors.primaryColor, size: 30),
+    bottomAppBarTheme: BottomAppBarTheme(
+      color: AppColors.blackDarkColor,
+    ),
     textTheme: TextTheme(
       bodyLarge: GoogleFonts.poppins(
         fontWeight: FontWeight.bold,
