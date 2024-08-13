@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_colors.dart';
-import 'package:todo_app/features/bottom_sheets/language_bottom_sheet.dart';
+import 'package:todo_app/features/home/presentation/views/bottom_sheets/language_bottom_sheet.dart';
 import 'package:todo_app/providers/app_config_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../bottom_sheets/theme_bottom_sheet.dart';
+import '../presentation/views/bottom_sheets/theme_bottom_sheet.dart';
 
 class SettingsTap extends StatelessWidget {
   const SettingsTap({super.key});

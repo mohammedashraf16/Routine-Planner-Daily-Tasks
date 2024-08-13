@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/features/home/home_screen.dart';
+import 'package:todo_app/features/home/presentation/views/edit_note_screen.dart';
+import 'package:todo_app/features/home/presentation/views/home_screen.dart';
 import 'package:todo_app/firebase_options.dart';
 import 'package:todo_app/providers/app_config_provider.dart';
 import 'package:todo_app/theme/my_theme_data.dart';
@@ -12,7 +13,7 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseFirestore.instance.disableNetwork();
+  await FirebaseFirestore.instance.enableNetwork();
   runApp(
       ChangeNotifierProvider(
     create: (context) => AppConfigProvider()..getTheme()..getLanguage(),
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       routes: {
         HomeScreen.routeName: (context) => const HomeScreen(),
+        EditNoteScreen.routeName: (context) =>  EditNoteScreen(),
       },
     );
   }

@@ -2,11 +2,11 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_colors.dart';
-import 'package:todo_app/features/bottom_sheets/add_task_bottom_sheet.dart';
+import 'package:todo_app/features/home/presentation/views/bottom_sheets/add_task_bottom_sheet.dart';
 import 'package:todo_app/features/home/tabs/settings_tab.dart';
 import 'package:todo_app/features/home/tabs/tasks_tab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../providers/app_config_provider.dart';
+import '../../../../providers/app_config_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

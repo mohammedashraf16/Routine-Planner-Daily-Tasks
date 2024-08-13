@@ -2,7 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:todo_app/features/home/firebase_functions.dart';
+import 'package:todo_app/features/home/functions/firebase_functions.dart';
 import 'package:todo_app/features/home/model/tasks_model.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
@@ -161,7 +161,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
     );
   }
 
-  void showDateFun() async {
+   void showDateFun() async {
     DateTime? chosenDate = await showDatePicker(
       context: context,
       builder: (context, child) {

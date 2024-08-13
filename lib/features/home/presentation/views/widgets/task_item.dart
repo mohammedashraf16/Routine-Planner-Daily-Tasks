@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_colors.dart';
-import 'package:todo_app/features/home/firebase_functions.dart';
+import 'package:todo_app/features/home/presentation/views/edit_note_screen.dart';
+import 'package:todo_app/features/home/functions/firebase_functions.dart';
 import 'package:todo_app/features/home/model/tasks_model.dart';
 import 'package:todo_app/providers/app_config_provider.dart';
 
@@ -47,7 +48,9 @@ class TaskItem extends StatelessWidget {
                     bottomLeft: Radius.circular(15)),
               ),
               SlidableAction(
-                onPressed: (context) {},
+                onPressed: (context) {
+                  Navigator.pushNamed(context, EditNoteScreen.routeName,arguments: model);
+                },
                 label: "Edit",
                 backgroundColor: AppColors.primaryColor,
                 icon: Icons.edit,
