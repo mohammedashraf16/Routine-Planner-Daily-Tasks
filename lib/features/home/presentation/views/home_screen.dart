@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app_colors.dart';
+import 'package:todo_app/core/app_colors/app_colors.dart';
 import 'package:todo_app/features/home/presentation/views/bottom_sheets/add_task_bottom_sheet.dart';
 import 'package:todo_app/features/home/tabs/settings_tab.dart';
 import 'package:todo_app/features/home/tabs/tasks_tab.dart';
@@ -29,7 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
         title: AnimatedTextKit(
           animatedTexts: [
             TypewriterAnimatedText(
-              AppLocalizations.of(context)!.app_title,
+              currentIndex == 0
+                  ? AppLocalizations.of(context)!.app_title
+                  : AppLocalizations.of(context)!.settings,
               textStyle: Theme.of(context)
                   .textTheme
                   .bodyLarge
@@ -97,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> tabs = [
-     TasksTap(),
+    TasksTap(),
     const SettingsTap(),
   ];
 }

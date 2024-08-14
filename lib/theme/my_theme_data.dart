@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_app/app_colors.dart';
+import 'package:todo_app/core/app_colors/app_colors.dart';
 
 class MyThemeData {
   static final ThemeData lightTheme = ThemeData(

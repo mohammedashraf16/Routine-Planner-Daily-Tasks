@@ -1,9 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/core/app_colors/functions/firebase_functions.dart';
+import 'package:todo_app/features/auth/data/model/user_model.dart';
 
 class AppConfigProvider extends ChangeNotifier {
   ThemeMode mode = ThemeMode.dark;
 String appLanguage="en";
+
+
   getTheme() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? isDark = prefs.getBool("isDark");
@@ -39,7 +44,6 @@ String appLanguage="en";
     prefs.setString("isEnglish", appLanguage);
     notifyListeners();
   }
-
   Future<void>changeTheme(ThemeMode themeMode) async {
     if (mode == themeMode) {
       return;
@@ -49,8 +53,20 @@ String appLanguage="en";
     prefs.setBool("isDark", mode == ThemeMode.dark);
     notifyListeners();
   }
-
   bool isDark() {
     return mode == ThemeMode.dark;
   }
+
+  late User? firebaseUser;
+  late UserModel? userModel;
+   AppConfigProvider(){
+     firebaseUser =FirebaseAuth.instance.currentUser;
+     if(firebaseUser!=null){
+       initUser();
+     }
+   }
+   initUser()async{
+    userModel =await FirebaseFunctions.readUser(firebaseUser!.uid);
+    notifyListeners();
+   }
 }

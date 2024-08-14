@@ -106,4 +106,8 @@ flutter:
     - .dart_tool/flutter_build/412a0dcc5dbd4cbe8bd4820c3a8b7870/
     - .dart_tool/flutter_build/8fdd8ce4c8c6ac5e2763afe65397181d/
     - .dart_tool/flutter_build/e6e2d869b36e23bef5c7c285760205d3/
+    - assets/
+    - assets/images/
+    - assets/images/2.0x/
+    - assets/images/3.0x/
 

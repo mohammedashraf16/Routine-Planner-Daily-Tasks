@@ -1,8 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/app_colors.dart';
+import 'package:todo_app/core/app_colors/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:todo_app/features/home/functions/firebase_functions.dart';
+import 'package:todo_app/core/app_colors/functions/firebase_functions.dart';
 import 'package:todo_app/features/home/model/tasks_model.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
@@ -47,6 +48,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               ),
               const SizedBox(height: 15),
               TextFormField(
+                style: const TextStyle(fontSize: 22),
                 controller: titleController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -75,6 +77,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               ),
               const SizedBox(height: 30),
               TextFormField(
+                style: const TextStyle(fontSize: 22),
                 controller: descriptionController,
                 maxLines: 4,
                 validator: (value) {
@@ -134,8 +137,8 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                       backgroundColor:
                           WidgetStatePropertyAll(AppColors.primaryColor)),
                   onPressed: () {
-                    print(selectedDate);
                     TaskModel model = TaskModel(
+                      userId: FirebaseAuth.instance.currentUser?.uid??"",
                         title: titleController.text,
                         description: descriptionController.text,
                         date: DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app_colors.dart';
+import 'package:todo_app/core/app_colors/app_colors.dart';
 import 'package:todo_app/features/home/presentation/views/edit_note_screen.dart';
-import 'package:todo_app/features/home/functions/firebase_functions.dart';
+import 'package:todo_app/core/app_colors/functions/firebase_functions.dart';
 import 'package:todo_app/features/home/model/tasks_model.dart';
 import 'package:todo_app/providers/app_config_provider.dart';
 
