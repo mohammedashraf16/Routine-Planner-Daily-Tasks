@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/core/app_colors/app_colors.dart';
 import 'package:todo_app/core/app_colors/functions/firebase_functions.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo_app/features/auth/presentation/views/widgets/alert_dialog_sign_up.dart';
+import 'package:todo_app/providers/app_config_provider.dart';
 import '../sign_in.dart';
 
 class SignUpViewBody extends StatelessWidget {
   SignUpViewBody({super.key});
 
-  var firstNameController = TextEditingController();
-  var lastNameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    AppConfigProvider provider = Provider.of<AppConfigProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: SingleChildScrollView(
@@ -21,20 +25,25 @@ class SignUpViewBody extends StatelessWidget {
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * .12),
             Text(
-              "Login",
+              AppLocalizations.of(context)!.signUp,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             Text(
-              "Welcome back to the app!",
+              AppLocalizations.of(context)!.welcomeBack,
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(height: 50),
             Text(
-              "First Name",
-              style: Theme.of(context)
+              AppLocalizations.of(context)!.firstName,
+              style: provider.isDark()?Theme
+                  .of(context)
                   .textTheme
                   .bodyMedium
-                  ?.copyWith(color: AppColors.whiteColor),
+                  ?.copyWith(color: AppColors.whiteColor):Theme
+                  .of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColors.blackColor),
             ),
             const SizedBox(height: 10),
             TextFormField(
@@ -42,7 +51,7 @@ class SignUpViewBody extends StatelessWidget {
               keyboardType: TextInputType.emailAddress,
               style: const TextStyle(fontSize: 20),
               decoration: InputDecoration(
-                  hintText: "First Name",
+                  hintText: AppLocalizations.of(context)!.firstName,
                   hintStyle: const TextStyle(color: Colors.grey),
                   suffixIcon: Icon(
                     Icons.perm_identity_rounded,
@@ -51,11 +60,16 @@ class SignUpViewBody extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              "Last Name",
-              style: Theme.of(context)
+              AppLocalizations.of(context)!.lastName,
+              style: provider.isDark()?Theme
+                  .of(context)
                   .textTheme
                   .bodyMedium
-                  ?.copyWith(color: AppColors.whiteColor),
+                  ?.copyWith(color: AppColors.whiteColor):Theme
+                  .of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColors.blackColor),
             ),
             const SizedBox(height: 10),
             TextFormField(
@@ -63,7 +77,7 @@ class SignUpViewBody extends StatelessWidget {
               keyboardType: TextInputType.emailAddress,
               style: const TextStyle(fontSize: 20),
               decoration: InputDecoration(
-                  hintText: "Last Name",
+                  hintText: AppLocalizations.of(context)!.lastName,
                   hintStyle: const TextStyle(color: Colors.grey),
                   suffixIcon: Icon(
                     Icons.perm_identity_rounded,
@@ -72,11 +86,16 @@ class SignUpViewBody extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              "Email Address",
-              style: Theme.of(context)
+              AppLocalizations.of(context)!.email,
+              style: provider.isDark()?Theme
+                  .of(context)
                   .textTheme
                   .bodyMedium
-                  ?.copyWith(color: AppColors.whiteColor),
+                  ?.copyWith(color: AppColors.whiteColor):Theme
+                  .of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColors.blackColor),
             ),
             const SizedBox(height: 10),
             TextFormField(
@@ -93,11 +112,16 @@ class SignUpViewBody extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              "Password",
-              style: Theme.of(context)
+              AppLocalizations.of(context)!.password,
+              style: provider.isDark()?Theme
+                  .of(context)
                   .textTheme
                   .bodyMedium
-                  ?.copyWith(color: AppColors.whiteColor),
+                  ?.copyWith(color: AppColors.whiteColor):Theme
+                  .of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColors.blackColor),
             ),
             const SizedBox(height: 10),
             TextFormField(
@@ -112,7 +136,6 @@ class SignUpViewBody extends StatelessWidget {
                     color: AppColors.primaryColor,
                   )),
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 40.0),
               child: SizedBox(
@@ -124,34 +147,28 @@ class SignUpViewBody extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10))),
                   onPressed: () {
                     FirebaseFunctions.createUserWithEmailAndPassword(
-                      firstName: firstNameController.text,
-                      lastName: lastNameController.text,
-                          emailController.text,
-                        passwordController.text,
-                        onSuccess: () {
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            SignInView.routeName,
-                                (route) => false,
-                          );
-                        },
-                        onError: (message){
-                          showDialog(context: context, builder: (context)=>AlertDialog(
-                            title: const Text("Error"),
-                            content: Text(message),
-                            actions: [
-                              ElevatedButton(onPressed: (){
-                                Navigator.pop(context);
-                              }, child: const Text("Okay"))
-                            ],
-                          ));
-                        }
-                    );
+                        firstName: firstNameController.text,
+                        lastName: lastNameController.text,
+                        emailController.text,
+                        passwordController.text, onSuccess: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        SignInView.routeName,
+                        (route) => false,
+                      );
+                    }, onError: (message) {
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialogSignUp(
+                                provider: provider,
+                                message: message,
+                              ));
+                    });
                   },
                   child: Row(
                     children: [
                       Text(
-                        "Create Account",
+                        AppLocalizations.of(context)!.createAccount,
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
@@ -178,10 +195,10 @@ class SignUpViewBody extends StatelessWidget {
                     textAlign: TextAlign.center,
                     TextSpan(children: [
                       TextSpan(
-                          text: "Have an account?",
+                          text: AppLocalizations.of(context)!.haveAnAccount,
                           style: Theme.of(context).textTheme.bodyMedium),
                       TextSpan(
-                          text: " SignIn",
+                          text: AppLocalizations.of(context)!.login,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -194,6 +211,5 @@ class SignUpViewBody extends StatelessWidget {
       ),
     );
   }
-
-
 }
+

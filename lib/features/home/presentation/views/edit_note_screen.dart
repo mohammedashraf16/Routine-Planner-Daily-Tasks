@@ -23,14 +23,8 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var model = ModalRoute
-        .of(context)
-        ?.settings
-        .arguments as TaskModel;
-    var height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    var model = ModalRoute.of(context)?.settings.arguments as TaskModel;
+    var height = MediaQuery.of(context).size.height;
     AppConfigProvider provider = Provider.of<AppConfigProvider>(context);
     return Scaffold(
       body: Stack(
@@ -56,8 +50,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                           )),
                       const SizedBox(width: 10),
                       Text(AppLocalizations.of(context)!.app_title,
-                          style: Theme
-                              .of(context)
+                          style: Theme.of(context)
                               .textTheme
                               .bodyLarge
                               ?.copyWith(color: AppColors.whiteColor)),
@@ -86,16 +79,18 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         AppLocalizations.of(context)!.edit_task,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .bodyLarge
-                            ?.copyWith(color: AppColors.blackColor),
+                        style: provider.isDark()
+                            ? Theme.of(context).textTheme.bodyLarge
+                            : Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.copyWith(color: AppColors.blackColor),
                         textAlign: TextAlign.center,
                       ),
                     ),
                     const SizedBox(height: 15),
                     TextFormField(
+                      style: TextStyle(fontSize: 22),
                       controller: titleEditingController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -115,8 +110,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                             )),
                         label: Text(
                           AppLocalizations.of(context)!.enter_your_task,
-                          style: Theme
-                              .of(context)
+                          style: Theme.of(context)
                               .textTheme
                               .bodyMedium
                               ?.copyWith(color: AppColors.primaryColor),
@@ -125,6 +119,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                     ),
                     const SizedBox(height: 30),
                     TextFormField(
+                      style: TextStyle(fontSize: 22),
                       controller: descriptionEditingController,
                       maxLines: 4,
                       validator: (value) {
@@ -149,8 +144,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                           children: [
                             Text(
                               AppLocalizations.of(context)!.description,
-                              style: Theme
-                                  .of(context)
+                              style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(color: AppColors.primaryColor),
@@ -162,10 +156,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                     const SizedBox(height: 30),
                     Text(
                       AppLocalizations.of(context)!.select_time,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodyMedium,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(height: 30),
                     InkWell(
@@ -174,13 +165,9 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                       },
                       child: Text(
                         selectedDate.toString().substring(0, 10),
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(
-                          color: AppColors.primaryColor,
-                        ),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: AppColors.primaryColor,
+                            ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -190,12 +177,11 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                       child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor:
-                            WidgetStatePropertyAll(AppColors.primaryColor)),
+                                WidgetStatePropertyAll(AppColors.primaryColor)),
                         onPressed: () {
-                          model.title=titleEditingController.text  ;
-                          model.description=descriptionEditingController.text ;
-                          model.date = DateUtils
-                              .dateOnly(selectedDate)
+                          model.title = titleEditingController.text;
+                          model.description = descriptionEditingController.text;
+                          model.date = DateUtils.dateOnly(selectedDate)
                               .millisecondsSinceEpoch;
                           FirebaseFunctions.updateTasks(model);
                           Navigator.pop(context);
@@ -203,13 +189,9 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                         child: Text(
                           AppLocalizations.of(context)!.add_task,
                           style:
-                          Theme
-                              .of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                            color: AppColors.whiteColor,
-                          ),
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: AppColors.whiteColor,
+                                  ),
                         ),
                       ),
                     ),

@@ -17,5 +17,19 @@
   "delete":"Delete",
   "edit": "Edit",
   "enter_your_task": "Enter Your Task",
-  "description": "Description"
+  "description": "Description",
+  "welcomeBack": "Welcome back to the app!",
+  "welcome": "Welcome!",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "createAccount": "Create Account",
+  "email": "Email Address",
+  "password": "Password",
+  "login": "Log In",
+  "signUp": " Sign Up",
+  "logOut": "Log Out",
+  "canNotHave": "Can't have an account?",
+  "haveAnAccount": "Have An Account?",
+  "error": "Error",
+  "okay": "Okay"
 }

@@ -17,5 +17,19 @@
   "delete":"ازاله",
   "edit": "تعديل",
   "enter_your_task": "ادخل مهمتك",
-  "description": "وصف المهمه"
+  "description": "وصف المهمه",
+  "welcomeBack": "مرحبا بك مره اخري",
+  "welcome": "مرحبا بك",
+  "firstName": "الاسم الأول",
+  "lastName": "الاسم الأخير",
+  "createAccount": "انشاء حساب",
+  "email": "عنوان البريد",
+  "password": "كلمه المرور",
+  "login": "تسجيل دخول",
+  "signUp": " انشاء حساب",
+  "logOut": "تسجيل خروج",
+  "canNotHave": "ليس لديك حساب؟",
+  "haveAnAccount": "هل لديك حساب؟",
+  "error": "خطأ",
+  "okay": "حسناً"
 }

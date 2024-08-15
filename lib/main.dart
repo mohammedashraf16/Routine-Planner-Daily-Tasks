@@ -22,8 +22,8 @@ void main() async {
         ..getTheme()
         ..getLanguage(),
       child: const MyApp()));
-}
 
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
