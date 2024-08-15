@@ -6,10 +6,10 @@ import 'package:todo_app/providers/app_config_provider.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
       {super.key,
-        required this.text,
-        required this.hitText,
-        required this.icon,
-        required this.controller});
+      required this.text,
+      required this.hitText,
+      required this.icon,
+      required this.controller});
 
   final String text;
   final String hitText;
@@ -26,13 +26,13 @@ class CustomTextFormField extends StatelessWidget {
           text,
           style: provider.isDark()
               ? Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: AppColors.whiteColor)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColors.whiteColor)
               : Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: AppColors.blackColor),
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColors.blackColor),
         ),
         const SizedBox(height: 10),
         TextFormField(
@@ -40,9 +40,10 @@ class CustomTextFormField extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           style: const TextStyle(fontSize: 20),
           decoration: InputDecoration(
-              hintText: "hello@example.com",
-              hintStyle: const TextStyle(color: Colors.grey),
-              suffixIcon: icon),
+            hintText: hitText,
+            hintStyle: const TextStyle(color: Colors.grey),
+            suffixIcon: icon,
+          ),
         ),
       ],
     );

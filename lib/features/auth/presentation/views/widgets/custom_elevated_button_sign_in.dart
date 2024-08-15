@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:todo_app/core/app_colors/app_colors.dart';
-import 'package:todo_app/core/app_colors/functions/firebase_functions.dart';
-import 'package:todo_app/features/auth/presentation/views/widgets/alert_dialog_sign_in.dart';
-import 'package:todo_app/features/home/presentation/views/home_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../../../../providers/app_config_provider.dart';
 
-class CustomElevatedButtonSignIn extends StatelessWidget {
-  const CustomElevatedButtonSignIn(
+class CustomElevatedButton extends StatelessWidget {
+  const CustomElevatedButton(
       {super.key,
         required this.emailController,
-        required this.passwordController});
+        required this.passwordController, this.onPressed});
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
-
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    AppConfigProvider provider = Provider.of<AppConfigProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40.0),
       child: SizedBox(
@@ -28,23 +22,7 @@ class CustomElevatedButtonSignIn extends StatelessWidget {
               backgroundColor: AppColors.blueColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10))),
-          onPressed: () {
-            FirebaseFunctions.signInWithEmailAndPassword(
-                emailController.text, passwordController.text, onSuccess: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                HomeScreen.routeName,
-                    (route) => false,
-              );
-            }, onError: (message) {
-              showDialog(
-                  context: context,
-                  builder: (context) => AlertDialogSignIn(
-                    provider: provider,
-                    message: message,
-                  ));
-            });
-          },
+          onPressed: onPressed,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -66,3 +44,13 @@ class CustomElevatedButtonSignIn extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
