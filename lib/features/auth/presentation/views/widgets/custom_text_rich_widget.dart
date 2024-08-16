@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import '../../../../../core/constant/app_colors.dart';
 
 class CustomTextRichWidget extends StatelessWidget {
-   CustomTextRichWidget(
-      {super.key, required this.textOne, required this.textTwo,this.onTap});
+  const CustomTextRichWidget(
+      {super.key, required this.textOne, required this.textTwo, this.onTap});
 
   final String textOne;
   final String textTwo;
-  void Function()? onTap;
+  final void Function()? onTap;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:onTap,
+      onTap: onTap,
       child: Text.rich(
         textAlign: TextAlign.center,
         TextSpan(

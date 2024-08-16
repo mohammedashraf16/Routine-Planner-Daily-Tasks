@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
+
 class CustomTextFormFieldEditingTask extends StatelessWidget {
-   CustomTextFormFieldEditingTask({super.key, required this.text, this.maxLines=1,required this.controller});
- TextEditingController controller =TextEditingController();
-final String text;
-final int maxLines;
+  const CustomTextFormFieldEditingTask(
+      {super.key,
+      required this.text,
+      this.maxLines = 1, required this.controller,
+      });
+
+  final TextEditingController controller;
+  final String text;
+  final int maxLines;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(

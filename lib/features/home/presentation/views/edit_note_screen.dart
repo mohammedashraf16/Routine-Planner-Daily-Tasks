@@ -11,7 +11,7 @@ class EditNoteScreen extends StatelessWidget {
   final TextEditingController titleEditingController = TextEditingController();
   final TextEditingController descriptionEditingController =
       TextEditingController();
-  DateTime selectedDate = DateTime.now();
+final  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {

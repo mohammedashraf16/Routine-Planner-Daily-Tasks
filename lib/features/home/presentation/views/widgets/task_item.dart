@@ -6,9 +6,9 @@ import 'package:todo_app/features/home/presentation/views/widgets/custom_slidabl
 import 'package:todo_app/providers/app_config_provider.dart';
 
 class TaskItem extends StatelessWidget {
-  TaskItem({required this.model, super.key});
+  const TaskItem({required this.model, super.key});
 
-  TaskModel model;
+  final TaskModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,9 @@ class TaskItem extends StatelessWidget {
                 blurStyle: BlurStyle.outer,
                 offset: Offset(2, 1.8))
           ]),
-      child:CustomSlidableWidget(model: model,) ,
+      child: CustomSlidableWidget(
+        model: model,
+      ),
     );
   }
 }
