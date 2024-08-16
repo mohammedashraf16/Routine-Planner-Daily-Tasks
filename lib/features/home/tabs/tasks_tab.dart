@@ -1,8 +1,8 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/core/app_colors/app_colors.dart';
-import 'package:todo_app/core/app_colors/functions/firebase_functions.dart';
+import 'package:todo_app/core/constant/app_colors.dart';
+import 'package:todo_app/core/functions/firebase_functions.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/task_item.dart';
 import 'package:todo_app/providers/app_config_provider.dart';
 

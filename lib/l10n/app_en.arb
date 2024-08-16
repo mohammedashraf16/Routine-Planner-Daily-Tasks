@@ -10,6 +10,7 @@
   "mode": "Mode",
   "dark":"Dark",
   "light": "Light",
+  "saveChanges": "Save Changes",
   "edit_task": "Edit Task",
   "add_task": "Add Task",
   "save_changes": "Save Changes",
@@ -31,5 +32,7 @@
   "canNotHave": "Can't have an account?",
   "haveAnAccount": "Have An Account?",
   "error": "Error",
-  "okay": "Okay"
+  "okay": "Okay",
+  "pleaseEnterYour": "Please Enter Your",
+  "task": "Task"
 }

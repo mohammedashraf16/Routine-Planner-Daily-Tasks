@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo_app/core/app_colors/functions/firebase_functions.dart';
+import 'package:todo_app/core/functions/firebase_functions.dart';
 import 'package:todo_app/features/auth/data/model/user_model.dart';
 
 class AppConfigProvider extends ChangeNotifier {

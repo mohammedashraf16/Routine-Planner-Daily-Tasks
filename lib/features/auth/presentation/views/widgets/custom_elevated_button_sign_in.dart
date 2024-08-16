@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/core/app_colors/app_colors.dart';
+import 'package:todo_app/core/constant/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomElevatedButton extends StatelessWidget {
@@ -27,7 +27,7 @@ class CustomElevatedButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.login,
+                AppLocalizations.of(context)!.signUp,
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium

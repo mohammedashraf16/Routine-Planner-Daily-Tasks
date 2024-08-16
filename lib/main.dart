@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/features/auth/presentation/views/sign_in.dart';
-import 'package:todo_app/features/auth/presentation/views/sign_up.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_in_view.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:todo_app/features/home/presentation/views/edit_note_screen.dart';
 import 'package:todo_app/features/home/presentation/views/home_screen.dart';
 import 'package:todo_app/firebase_options.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         SignInView.routeName: (context) => const SignInView(),
         SignUpView.routeName: (context) => const SignUpView(),
         HomeScreen.routeName: (context) => const HomeScreen(),
-        EditNoteScreen.routeName: (context) => const EditNoteScreen(),
+        EditNoteScreen.routeName: (context) =>  EditNoteScreen(),
       },
     );
   }

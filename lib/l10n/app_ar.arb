@@ -31,5 +31,8 @@
   "canNotHave": "ليس لديك حساب؟",
   "haveAnAccount": "هل لديك حساب؟",
   "error": "خطأ",
-  "okay": "حسناً"
+  "saveChanges": "حفظ التغييرات",
+  "okay": "حسناً",
+  "pleaseEnterYour": "الرجاء ادخال",
+  "task": "مهمتك"
 }

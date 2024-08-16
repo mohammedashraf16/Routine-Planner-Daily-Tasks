@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/core/app_colors/app_colors.dart';
-import 'package:todo_app/core/app_colors/functions/firebase_functions.dart';
-import 'package:todo_app/features/auth/presentation/views/sign_up.dart';
+import 'package:todo_app/core/constant/app_colors.dart';
+import 'package:todo_app/core/functions/firebase_functions.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:todo_app/features/auth/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo_app/features/auth/presentation/views/widgets/custom_text_rich_widget.dart';
