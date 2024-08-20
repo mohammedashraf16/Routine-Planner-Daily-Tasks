@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
 import 'package:todo_app/features/home/model/tasks_model.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/custom_elevated_button.dart';
-import 'package:todo_app/features/home/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:todo_app/features/home/presentation/views/widgets/custom_text_form_field_editing_task.dart';
 import 'package:todo_app/providers/app_config_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -20,14 +20,17 @@ class CustomContainerEditingTask extends StatefulWidget {
   final TaskModel model;
 
   @override
-  State<CustomContainerEditingTask> createState() => _CustomContainerEditingTaskState();
+  State<CustomContainerEditingTask> createState() =>
+      _CustomContainerEditingTaskState();
 }
 
-class _CustomContainerEditingTaskState extends State<CustomContainerEditingTask> {
+class _CustomContainerEditingTaskState
+    extends State<CustomContainerEditingTask> {
   DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
+    TaskModel model = ModalRoute.of(context)?.settings.arguments as TaskModel;
     AppConfigProvider provider = Provider.of<AppConfigProvider>(context);
     var height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
@@ -63,38 +66,44 @@ class _CustomContainerEditingTaskState extends State<CustomContainerEditingTask>
                 text: AppLocalizations.of(context)!.enter_your_task,
                 controller: widget.titleEditingController,
               ),
-              const SizedBox(height: 30),
+              const Spacer(),
               CustomTextFormFieldEditingTask(
                 text: AppLocalizations.of(context)!.description,
                 controller: widget.descriptionEditingController,
                 maxLines: 4,
               ),
-              const SizedBox(height: 30),
+              const Spacer(),
               Text(
                 AppLocalizations.of(context)!.select_time,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
-              const SizedBox(height: 30),
               InkWell(
-                onTap: () {
-                  showDateFun(provider);
+                onTap: () async {
+                  DateTime? newDate = await showDateFun(provider,model);
+                  if (newDate != null) {
+                    model.date = newDate.millisecondsSinceEpoch;
+                  }
                 },
                 child: Text(
-                  selectedDate.toString().substring(0, 10),
+                  DateUtils.dateOnly(
+                          DateTime.fromMillisecondsSinceEpoch(model.date))
+                      .toString()
+                      .substring(0, 10),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.primaryColor,
                       ),
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 30),
+              const Spacer(),
               CustomEditingElevatedButton(
                 model: widget.model,
                 titleEditingController: widget.titleEditingController,
-                descriptionEditingController: widget.descriptionEditingController,
+                descriptionEditingController:
+                    widget.descriptionEditingController,
                 selectedDate: selectedDate,
               ),
-              const SizedBox(height: 10),
+              const Spacer(),
             ],
           ),
         ),
@@ -102,7 +111,10 @@ class _CustomContainerEditingTaskState extends State<CustomContainerEditingTask>
     );
   }
 
-  void showDateFun(AppConfigProvider provider) async {
+  showDateFun(
+    AppConfigProvider provider,
+      TaskModel model
+  ) async {
     DateTime? chosenDate = await showDatePicker(
       context: context,
       builder: (context, child) {
@@ -111,21 +123,23 @@ class _CustomContainerEditingTaskState extends State<CustomContainerEditingTask>
                 colorScheme: ColorScheme.light(
                     primary: AppColors.primaryColor,
                     onSurfaceVariant: AppColors.primaryColor,
-                    onSurface: provider.isDark()?AppColors.whiteColor: Colors.black,
+                    onSurface:
+                        provider.isDark() ? AppColors.whiteColor : Colors.black,
                     outline: AppColors.primaryColor,
-                    surface: provider.isDark()?AppColors.blackDarkColor: Colors.white70),
+                    surface: provider.isDark()
+                        ? AppColors.blackDarkColor
+                        : Colors.white70),
                 dividerTheme: DividerThemeData(color: AppColors.primaryColor)),
             child: child!);
       },
-      initialDate: selectedDate,
+      initialDate: DateUtils.dateOnly(DateTime.fromMillisecondsSinceEpoch(model.date)),
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(
-        const Duration(days: 365 * 2),
-      ),
+      lastDate: DateTime.now().add(const Duration(days: 365 * 2)),
     );
     if (chosenDate != null) {
       selectedDate = chosenDate;
       setState(() {});
     }
+    return chosenDate;
   }
 }

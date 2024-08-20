@@ -15,7 +15,7 @@ final  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    var model = ModalRoute.of(context)?.settings.arguments as TaskModel;
+    TaskModel model = ModalRoute.of(context)?.settings.arguments as TaskModel;
     titleEditingController.text = model.title;
     descriptionEditingController.text = model.description;
     // DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch= model.date;

@@ -39,11 +39,11 @@ class CustomEditingElevatedButton extends StatelessWidget {
     );
   }
 
-  changeTask(TaskModel model, BuildContext context) {
+  Future<void> changeTask(TaskModel model, BuildContext context) async{
     model.title = titleEditingController.text;
     model.description = descriptionEditingController.text;
     model.date = DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch;
-    FirebaseFunctions.updateTasks(model);
+   await FirebaseFunctions.updateTasks(model);
     Navigator.pop(context);
   }
 }

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton(
       {super.key,
         required this.emailController,
-        required this.passwordController, this.onPressed});
+        required this.passwordController, this.onPressed, required this.text});
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final String text;
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class CustomElevatedButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.signUp,
+                text,
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium

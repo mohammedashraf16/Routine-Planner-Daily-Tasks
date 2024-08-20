@@ -6,45 +6,44 @@ import 'package:todo_app/features/auth/data/model/user_model.dart';
 
 class AppConfigProvider extends ChangeNotifier {
   ThemeMode mode = ThemeMode.dark;
-String appLanguage="en";
-
-
+  String appLanguage = "en";
   getTheme() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? isDark = prefs.getBool("isDark");
-    if(isDark!=null){
-      if(isDark==true){
-        mode=ThemeMode.dark;
-      }else{
-        mode=ThemeMode.light;
+    if (isDark != null) {
+      if (isDark == true) {
+        mode = ThemeMode.dark;
+      } else {
+        mode = ThemeMode.light;
       }
       notifyListeners();
     }
   }
+
   getLanguage() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? isEnglish =prefs.getString("isEnglish");
-    if(isEnglish!=null){
-      if(isEnglish=="en"){
-        appLanguage="en";
-      }else{
-        appLanguage="ar";
+    String? isEnglish = prefs.getString("isEnglish");
+    if (isEnglish != null) {
+      if (isEnglish == "en") {
+        appLanguage = "en";
+      } else {
+        appLanguage = "ar";
       }
       notifyListeners();
     }
   }
 
-
-  changeLanguage(String newLanguage)async{
-    if(appLanguage==newLanguage){
+  changeLanguage(String newLanguage) async {
+    if (appLanguage == newLanguage) {
       return;
     }
-    appLanguage=newLanguage;
+    appLanguage = newLanguage;
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString("isEnglish", appLanguage);
     notifyListeners();
   }
-  Future<void>changeTheme(ThemeMode themeMode) async {
+
+  Future<void> changeTheme(ThemeMode themeMode) async {
     if (mode == themeMode) {
       return;
     }
@@ -53,20 +52,24 @@ String appLanguage="en";
     prefs.setBool("isDark", mode == ThemeMode.dark);
     notifyListeners();
   }
+
   bool isDark() {
     return mode == ThemeMode.dark;
   }
 
+
   late User? firebaseUser;
   late UserModel? userModel;
-   AppConfigProvider(){
-     firebaseUser =FirebaseAuth.instance.currentUser;
-     if(firebaseUser!=null){
-       initUser();
-     }
-   }
-   initUser()async{
-    userModel =await FirebaseFunctions.readUser(firebaseUser!.uid);
+
+  AppConfigProvider() {
+    firebaseUser = FirebaseAuth.instance.currentUser;
+    if (firebaseUser != null) {
+      initUser();
+    }
+  }
+
+  initUser() async {
+    userModel = await FirebaseFunctions.readUser(firebaseUser!.uid);
     notifyListeners();
-   }
+  }
 }

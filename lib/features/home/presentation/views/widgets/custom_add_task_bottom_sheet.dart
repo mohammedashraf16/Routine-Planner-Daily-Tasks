@@ -56,7 +56,7 @@ class _CustomAddTaskBottomSheetState extends State<CustomAddTaskBottomSheet> {
         const SizedBox(height: 30),
         InkWell(
           onTap: () {
-            showDateFun(provider, context);
+            showDateFun(provider);
           },
           child: Text(
             selectedDate.toString().substring(0, 10),
@@ -81,7 +81,7 @@ class _CustomAddTaskBottomSheetState extends State<CustomAddTaskBottomSheet> {
     );
   }
 
-  void showDateFun(AppConfigProvider provider, BuildContext context) async {
+  void showDateFun(AppConfigProvider provider,) async {
     DateTime? chosenDate = await showDatePicker(
       context: context,
       builder: (context, child) {
@@ -105,7 +105,9 @@ class _CustomAddTaskBottomSheetState extends State<CustomAddTaskBottomSheet> {
     );
     if (chosenDate != null) {
       selectedDate = chosenDate;
-      setState(() {});
+      setState(() {
+
+      });
     }
   }
 }

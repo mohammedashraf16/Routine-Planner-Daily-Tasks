@@ -12,21 +12,24 @@ class CustomTextRichWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Text.rich(
-        textAlign: TextAlign.center,
-        TextSpan(
-          children: [
-            TextSpan(
-                text: textOne, style: Theme.of(context).textTheme.bodyMedium),
-            TextSpan(
-                text: textTwo,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: AppColors.primaryColor)),
-          ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Text.rich(
+          textAlign: TextAlign.center,
+          TextSpan(
+            children: [
+              TextSpan(
+                  text: textOne, style: Theme.of(context).textTheme.bodyMedium),
+              TextSpan(
+                  text: textTwo,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: AppColors.primaryColor)),
+            ],
+          ),
         ),
       ),
     );

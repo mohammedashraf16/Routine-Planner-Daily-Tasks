@@ -17,6 +17,7 @@ class SignUpViewBody extends StatelessWidget {
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,81 +25,112 @@ class SignUpViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(height: MediaQuery.of(context).size.height * .12),
-            Text(
-              AppLocalizations.of(context)!.signUp,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            Text(
-              AppLocalizations.of(context)!.welcomeBack,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: 50),
-            CustomTextFormField(
-              text: AppLocalizations.of(context)!.firstName,
-              hitText: AppLocalizations.of(context)!.firstName,
-              icon:  Icon(Icons.person,color: AppColors.blueColor,),
-              controller: firstNameController,
-            ),
-            const SizedBox(height: 20),
-            CustomTextFormField(
-              text: AppLocalizations.of(context)!.lastName,
-              hitText: AppLocalizations.of(context)!.lastName,
-              icon:  Icon(Icons.person,color: AppColors.blueColor,),
-              controller: firstNameController,
-            ),
-            const SizedBox(height: 20),
-            CustomTextFormField(
-              text: AppLocalizations.of(context)!.email,
-              hitText: "hello@example.com",
-              icon:  Icon(Icons.email_outlined,color: AppColors.blueColor,),
-              controller: firstNameController,
-            ),
-            const SizedBox(height: 20),
-            CustomTextFormField(
-              text: AppLocalizations.of(context)!.password,
-              hitText: "******",
-              icon:  Icon(Icons.password,color: AppColors.blueColor,),
-              controller: firstNameController,
-            ),
-            CustomElevatedButton(
-              onPressed: () {
-                FirebaseFunctions.createUserWithEmailAndPassword(
-                    firstName: firstNameController.text,
-                    lastName: lastNameController.text,
-                    emailController.text,
-                    passwordController.text, onSuccess: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    SignInView.routeName,
-                    (route) => false,
-                  );
-                }, onError: (message) {
-                  showDialog(
-                      context: context,
-                      builder: (context) => AlertDialogSignUp(
-                            provider: provider,
-                            message: message,
-                          ));
-                });
-              },
-              emailController: emailController,
-              passwordController: passwordController,
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * .04),
-            CustomTextRichWidget(
-              onTap: () {
-                Navigator.pushNamed(context, SignInView.routeName);
-              },
-              textOne: AppLocalizations.of(context)!.haveAnAccount,
-              textTwo: AppLocalizations.of(context)!.login,
-            )
-          ],
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.height * .12),
+              Text(
+                AppLocalizations.of(context)!.signUp,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              Text(
+                AppLocalizations.of(context)!.welcomeBack,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 50),
+              CustomTextFormField(
+                lable: AppLocalizations.of(context)!.firstName,
+                text: AppLocalizations.of(context)!.firstName,
+                hitText: AppLocalizations.of(context)!.firstName,
+                icon: Icon(
+                  Icons.person,
+                  color: AppColors.blueColor,
+                ),
+                controller: firstNameController,
+              ),
+              const SizedBox(height: 20),
+              CustomTextFormField(
+                lable: AppLocalizations.of(context)!.lastName,
+                text: AppLocalizations.of(context)!.lastName,
+                hitText: AppLocalizations.of(context)!.lastName,
+                icon: Icon(
+                  Icons.person,
+                  color: AppColors.blueColor,
+                ),
+                controller: lastNameController,
+              ),
+              const SizedBox(height: 20),
+              CustomTextFormField(
+                lable: AppLocalizations.of(context)!.email,
+                text: AppLocalizations.of(context)!.email,
+                hitText: "hello@example.com",
+                icon: Icon(
+                  Icons.email_outlined,
+                  color: AppColors.blueColor,
+                ),
+                controller: emailController,
+              ),
+              const SizedBox(height: 20),
+              CustomTextFormField(
+                obscureText: true,
+                lable: AppLocalizations.of(context)!.password,
+                text: AppLocalizations.of(context)!.password,
+                hitText: "******",
+                icon: Icon(
+                  Icons.password,
+                  color: AppColors.blueColor,
+                ),
+                controller: passwordController,
+              ),
+              CustomElevatedButton(
+                text: AppLocalizations.of(context)!.signUp,
+                onPressed: () {
+                  signUpFun(context, provider);
+                },
+                emailController: emailController,
+                passwordController: passwordController,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * .04),
+              CustomTextRichWidget(
+                onTap: () {
+                  Navigator.pushNamed(context, SignInView.routeName);
+                },
+                textOne: AppLocalizations.of(context)!.haveAnAccount,
+                textTwo: AppLocalizations.of(context)!.login,
+              )
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  signUpFun(BuildContext context, AppConfigProvider provider) {
+    if (formKey.currentState?.validate() == true) {
+      FirebaseFunctions.createUserWithEmailAndPassword(
+        firstName: firstNameController.text,
+        lastName: lastNameController.text,
+        emailController.text,
+        passwordController.text,
+        onSuccess: () {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            SignInView.routeName,
+            (route) => false,
+          );
+        },
+        onError: (message) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialogSignUp(
+              provider: provider,
+              message: message,
+            ),
+          );
+        },
+      );
+    }
   }
 }
