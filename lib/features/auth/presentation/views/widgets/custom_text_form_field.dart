@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
 import 'package:todo_app/providers/app_config_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
+   const CustomTextFormField({
     super.key,
     required this.text,
     required this.hitText,
     required this.icon,
     required this.controller,
     required this.lable,
-    this.obscureText=false,
+    this.obscureText=false, this.validator,
   });
 
   final String text;
@@ -21,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
   final Icon icon;
   final TextEditingController controller;
 final bool obscureText;
+final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     AppConfigProvider provider = Provider.of<AppConfigProvider>(context);
@@ -50,19 +50,10 @@ final bool obscureText;
             hintStyle: const TextStyle(color: Colors.grey),
             suffixIcon: icon,
           ),
-          validator: (value) {
-            return validateFun(value, context);
-          },
+          validator: validator,
         ),
       ],
     );
   }
 
-  String? validateFun(String? value, BuildContext context) {
-    if (value == null || value.isEmpty) {
-      return "${AppLocalizations.of(context)!.pleaseEnterYour} $lable";
-    } else {
-      return null;
-    }
-  }
 }

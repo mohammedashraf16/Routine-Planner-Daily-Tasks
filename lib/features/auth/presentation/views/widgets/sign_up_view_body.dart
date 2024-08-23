@@ -41,6 +41,13 @@ class SignUpViewBody extends StatelessWidget {
               ),
               const SizedBox(height: 50),
               CustomTextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "${AppLocalizations.of(context)!.pleaseEnterYour} ${AppLocalizations.of(context)!.firstName}";
+                  } else {
+                    return null;
+                  }
+                },
                 lable: AppLocalizations.of(context)!.firstName,
                 text: AppLocalizations.of(context)!.firstName,
                 hitText: AppLocalizations.of(context)!.firstName,
@@ -52,6 +59,13 @@ class SignUpViewBody extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               CustomTextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "${AppLocalizations.of(context)!.pleaseEnterYour} ${AppLocalizations.of(context)!.lastName}";
+                  } else {
+                    return null;
+                  }
+                },
                 lable: AppLocalizations.of(context)!.lastName,
                 text: AppLocalizations.of(context)!.lastName,
                 hitText: AppLocalizations.of(context)!.lastName,
@@ -63,6 +77,18 @@ class SignUpViewBody extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               CustomTextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "${AppLocalizations.of(context)!.pleaseEnterYour} ${AppLocalizations.of(context)!.email}";
+                  }
+                  final bool emailValid = RegExp(
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[gmail]+\.[com]+")
+                      .hasMatch(value);
+                  if (!emailValid) {
+                    return AppLocalizations.of(context)!.please_enter_valid_email;
+                  }
+                  return null;
+                },
                 lable: AppLocalizations.of(context)!.email,
                 text: AppLocalizations.of(context)!.email,
                 hitText: "hello@example.com",
@@ -74,6 +100,18 @@ class SignUpViewBody extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               CustomTextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "${AppLocalizations.of(context)!.pleaseEnterYour} ${AppLocalizations.of(context)!.password}";
+                  }
+                  final bool passwordValid = RegExp(
+                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                      .hasMatch(value);
+                  if (!passwordValid) {
+                    return AppLocalizations.of(context)!.please_enter_valid_password;
+                  }
+                  return null;
+                },
                 obscureText: true,
                 lable: AppLocalizations.of(context)!.password,
                 text: AppLocalizations.of(context)!.password,

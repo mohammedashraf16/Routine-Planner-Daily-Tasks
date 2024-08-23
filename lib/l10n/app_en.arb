@@ -34,5 +34,7 @@
   "error": "Error",
   "okay": "Okay",
   "pleaseEnterYour": "Please Enter Your",
-  "task": "Task"
+  "task": "Task",
+  "please_enter_valid_password" : "Please enter valid password",
+  "please_enter_valid_email": "Please enter valid email"
 }

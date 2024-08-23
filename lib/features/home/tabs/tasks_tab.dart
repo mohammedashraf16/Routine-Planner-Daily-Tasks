@@ -41,7 +41,6 @@ DateTime dateTime =DateTime.now();
             activeDayColor: AppColors.whiteColor,
             activeBackgroundDayColor: Colors.white38,
             dotColor: AppColors.whiteColor,
-            selectableDayPredicate: (date) => date.day != 23,
             locale: provider.appLanguage,
           ),
         ),

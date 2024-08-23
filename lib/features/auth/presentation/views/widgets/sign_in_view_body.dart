@@ -40,6 +40,19 @@ final formKey =GlobalKey<FormState>();
               ),
               const SizedBox(height: 50),
               CustomTextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "${AppLocalizations.of(context)!.pleaseEnterYour} ${AppLocalizations.of(context)!.email}";
+                  }
+                    final bool emailValid =
+                    RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[gmail]+\.[com]+")
+                        .hasMatch(value);
+                  if(!emailValid){
+                    return AppLocalizations.of(context)!.please_enter_valid_email;
+                  }
+                  return null;
+
+                },
                 lable: AppLocalizations.of(context)!.email,
                 controller: emailController,
                 text: AppLocalizations.of(context)!.email,
@@ -51,6 +64,19 @@ final formKey =GlobalKey<FormState>();
               ),
               const SizedBox(height: 50),
               CustomTextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "${AppLocalizations.of(context)!.pleaseEnterYour} ${AppLocalizations.of(context)!.password}";
+                  }
+                  final bool emailValid =
+                  RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                      .hasMatch(value);
+                  if(!emailValid){
+                    return AppLocalizations.of(context)!.please_enter_valid_password;
+                  }
+                  return null;
+
+                },
                 obscureText: true,
                 lable: AppLocalizations.of(context)!.password,
                 text: AppLocalizations.of(context)!.password,
