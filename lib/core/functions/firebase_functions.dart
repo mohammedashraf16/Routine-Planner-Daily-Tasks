@@ -52,16 +52,7 @@ class FirebaseFunctions {
 
   static Stream<QuerySnapshot<TaskModel>> getTasks(DateTime date) {
     var collection = getTasksCollection();
-    return collection
-        .where(
-          "userId",
-          isEqualTo: FirebaseAuth.instance.currentUser!.uid
-        )
-        .where(
-          "date",
-          isEqualTo: DateUtils.dateOnly(date).millisecondsSinceEpoch,
-        )
-        .snapshots();
+    return collection.where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid).where("date", isEqualTo: DateUtils.dateOnly(date).millisecondsSinceEpoch,).snapshots();
   }
 
   static Future<void> deleteTasks(String id) {

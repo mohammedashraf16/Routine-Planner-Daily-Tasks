@@ -24,6 +24,7 @@ class LanguageBottomSheet extends StatelessWidget {
             InkWell(
               onTap: () {
                 pro.changeLanguage("en");
+                Navigator.pop(context);
               },
               child: pro.appLanguage == "en"
                   ? showSelectedItem(
