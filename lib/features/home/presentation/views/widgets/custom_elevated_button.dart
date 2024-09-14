@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
 import 'package:todo_app/core/functions/firebase_functions.dart';
-import 'package:todo_app/features/home/model/tasks_model.dart';
+import 'package:todo_app/features/home/domain/model/tasks_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomEditingElevatedButton extends StatelessWidget {

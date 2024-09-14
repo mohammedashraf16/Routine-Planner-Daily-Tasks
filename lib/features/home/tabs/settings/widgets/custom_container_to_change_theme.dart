@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
 import 'package:todo_app/features/home/presentation/views/bottom_sheets/theme_bottom_sheet.dart';
-import 'package:todo_app/providers/app_config_provider.dart';
+import 'package:todo_app/features/home/domain/providers/app_config_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CustomContainerToChangeTheme extends StatelessWidget {
   const CustomContainerToChangeTheme({super.key});

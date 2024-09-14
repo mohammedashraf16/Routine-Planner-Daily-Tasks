@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
 import 'package:todo_app/core/functions/firebase_functions.dart';
-import 'package:todo_app/features/home/model/tasks_model.dart';
+import 'package:todo_app/features/home/domain/model/tasks_model.dart';
 import 'package:todo_app/features/home/presentation/views/edit_note_screen.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/custom_task_title_and_description.dart';
 

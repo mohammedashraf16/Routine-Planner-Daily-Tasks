@@ -4,7 +4,7 @@ import 'package:todo_app/core/constant/app_colors.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/custom_elevated_button_add_task.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/custom_text_form_field_add_task_and_description.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../../../../providers/app_config_provider.dart';
+import '../../../domain/providers/app_config_provider.dart';
 import 'custom_animated_text_kit_widget.dart';
 
 class CustomAddTaskBottomSheet extends StatefulWidget {

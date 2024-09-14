@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
-import 'package:todo_app/features/home/model/tasks_model.dart';
+import 'package:todo_app/features/home/domain/model/tasks_model.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/custom_confirm_task_button.dart';
 
 class CustomTaskTitleAndDescription extends StatelessWidget {

@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/features/auth/presentation/views/sign_in_view.dart';
-import 'package:todo_app/features/auth/presentation/views/sign_up_view.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_in/sign_in_view.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_up/sign_up_view.dart';
 import 'package:todo_app/features/home/presentation/views/edit_note_screen.dart';
 import 'package:todo_app/features/home/presentation/views/home_screen.dart';
-import 'package:todo_app/firebase_options.dart';
-import 'package:todo_app/providers/app_config_provider.dart';
-import 'package:todo_app/theme/my_theme_data.dart';
+import 'package:todo_app/core/functions/firebase_options.dart';
+import 'package:todo_app/features/home/domain/providers/app_config_provider.dart';
+import 'package:todo_app/config/theme/my_theme_data.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {

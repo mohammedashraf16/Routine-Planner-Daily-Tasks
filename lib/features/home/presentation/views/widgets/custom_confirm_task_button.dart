@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
 import 'package:todo_app/core/functions/firebase_functions.dart';
-import 'package:todo_app/features/home/model/tasks_model.dart';
+import 'package:todo_app/features/home/domain/model/tasks_model.dart';
 
 class CustomConfirmTaskButton extends StatelessWidget {
   const CustomConfirmTaskButton({required this.model, super.key});

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
-import 'package:todo_app/features/home/model/tasks_model.dart';
+import 'package:todo_app/features/home/domain/model/tasks_model.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/custom_text_form_field_editing_task.dart';
-import 'package:todo_app/providers/app_config_provider.dart';
+import 'package:todo_app/features/home/domain/providers/app_config_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomContainerEditingTask extends StatefulWidget {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
 import 'package:todo_app/core/functions/firebase_functions.dart';
-import 'package:todo_app/features/auth/presentation/views/sign_in_view.dart';
-import 'package:todo_app/providers/app_config_provider.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_in/sign_in_view.dart';
+import 'package:todo_app/features/home/domain/providers/app_config_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CustomElevatedButtonToLogOut extends StatelessWidget {
   const CustomElevatedButtonToLogOut({super.key});

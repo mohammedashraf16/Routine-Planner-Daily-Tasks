@@ -1,23 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/core/base/base.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
-import 'package:todo_app/core/functions/firebase_functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:todo_app/features/auth/presentation/views/widgets/alert_dialog_sign_up.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_up/sign_up_connector.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_up/sign_up_view_model.dart';
 import 'package:todo_app/features/auth/presentation/views/widgets/custom_elevated_button_sign_in.dart';
 import 'package:todo_app/features/auth/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:todo_app/features/auth/presentation/views/widgets/custom_text_rich_widget.dart';
-import 'package:todo_app/providers/app_config_provider.dart';
-import '../sign_in_view.dart';
+import 'package:todo_app/features/home/domain/providers/app_config_provider.dart';
+import '../sign_in/sign_in_view.dart';
 
-class SignUpViewBody extends StatelessWidget {
-  SignUpViewBody({super.key});
+class SignUpViewBody extends StatefulWidget {
+  const SignUpViewBody({super.key});
 
+  @override
+  State<SignUpViewBody> createState() => _SignUpViewBodyState();
+}
+
+class _SignUpViewBodyState extends BaseView<SignUpViewBody, SignUpViewModel>
+    implements SignUpConnector {
   final firstNameController = TextEditingController();
+
   final lastNameController = TextEditingController();
+
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    vmObject.connector = this;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +102,8 @@ class SignUpViewBody extends StatelessWidget {
                           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[gmail]+\.[com]+")
                       .hasMatch(value);
                   if (!emailValid) {
-                    return AppLocalizations.of(context)!.please_enter_valid_email;
+                    return AppLocalizations.of(context)!
+                        .please_enter_valid_email;
                   }
                   return null;
                 },
@@ -108,7 +126,8 @@ class SignUpViewBody extends StatelessWidget {
                           r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
                       .hasMatch(value);
                   if (!passwordValid) {
-                    return AppLocalizations.of(context)!.please_enter_valid_password;
+                    return AppLocalizations.of(context)!
+                        .please_enter_valid_password;
                   }
                   return null;
                 },
@@ -126,6 +145,9 @@ class SignUpViewBody extends StatelessWidget {
                 text: AppLocalizations.of(context)!.signUp,
                 onPressed: () {
                   signUpFun(context, provider);
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Account Created successfully")));
+
                 },
                 emailController: emailController,
                 passwordController: passwordController,
@@ -147,28 +169,17 @@ class SignUpViewBody extends StatelessWidget {
 
   signUpFun(BuildContext context, AppConfigProvider provider) {
     if (formKey.currentState?.validate() == true) {
-      FirebaseFunctions.createUserWithEmailAndPassword(
+      vmObject.createUserWithEmailAndPassword(
         firstName: firstNameController.text,
         lastName: lastNameController.text,
         emailController.text,
         passwordController.text,
-        onSuccess: () {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            SignInView.routeName,
-            (route) => false,
-          );
-        },
-        onError: (message) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialogSignUp(
-              provider: provider,
-              message: message,
-            ),
-          );
-        },
       );
     }
+  }
+
+  @override
+  initMyViewModel() {
+    return SignUpViewModel();
   }
 }

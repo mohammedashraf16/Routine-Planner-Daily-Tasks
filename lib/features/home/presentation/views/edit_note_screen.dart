@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/features/home/model/tasks_model.dart';
+import 'package:todo_app/features/home/domain/model/tasks_model.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/custom_app_bar_editing_task.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/custom_container_editing_task.dart';
 

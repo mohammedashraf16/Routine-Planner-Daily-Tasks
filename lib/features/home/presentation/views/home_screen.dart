@@ -6,7 +6,7 @@ import 'package:todo_app/features/home/presentation/views/bottom_sheets/add_task
 import 'package:todo_app/features/home/tabs/settings/settings_tab.dart';
 import 'package:todo_app/features/home/tabs/tasks_tab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../../../providers/app_config_provider.dart';
+import '../../domain/providers/app_config_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

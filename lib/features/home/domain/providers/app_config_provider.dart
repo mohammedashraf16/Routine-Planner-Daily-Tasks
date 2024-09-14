@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo_app/core/functions/firebase_functions.dart';
 import 'package:todo_app/features/auth/data/model/user_model.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_up/sign_up_view_model.dart';
 
 class AppConfigProvider extends ChangeNotifier {
+  SignUpViewModel? signUpViewModel;
   ThemeMode mode = ThemeMode.dark;
   String appLanguage = "en";
   getTheme() async {
@@ -69,7 +70,7 @@ class AppConfigProvider extends ChangeNotifier {
   }
 
   initUser() async {
-    userModel = await FirebaseFunctions.readUser(firebaseUser!.uid);
+    userModel = await signUpViewModel?.readUser(firebaseUser!.uid);
     notifyListeners();
   }
 }

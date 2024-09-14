@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo_app/core/functions/firebase_functions.dart';
-import 'package:todo_app/features/home/model/tasks_model.dart';
+import 'package:todo_app/features/home/domain/model/tasks_model.dart';
 class CustomElevatedButtonAddTask extends StatelessWidget {
   const CustomElevatedButtonAddTask({super.key, required this.titleController, required this.descriptionController,required this.formKey, required this.selectedDate});
   final formKey;

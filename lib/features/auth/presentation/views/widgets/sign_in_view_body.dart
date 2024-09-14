@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/core/base/base.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
-import 'package:todo_app/core/functions/firebase_functions.dart';
-import 'package:todo_app/features/auth/presentation/views/sign_up_view.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_in/sign_in_connector.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_in/sign_in_view_model.dart';
+import 'package:todo_app/features/auth/presentation/views/sign_up/sign_up_view.dart';
 import 'package:todo_app/features/auth/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo_app/features/auth/presentation/views/widgets/custom_text_rich_widget.dart';
-import 'package:todo_app/features/home/presentation/views/home_screen.dart';
-import 'package:todo_app/providers/app_config_provider.dart';
-import 'alert_dialog_sign_in.dart';
+import 'package:todo_app/features/home/domain/providers/app_config_provider.dart';
 import 'custom_elevated_button_sign_in.dart';
 
-class SignInViewBody extends StatelessWidget {
-  SignInViewBody({super.key});
+class SignInViewBody extends StatefulWidget {
+   const SignInViewBody({super.key});
 
+  @override
+  State<SignInViewBody> createState() => _SignInViewBodyState();
+}
+
+class _SignInViewBodyState extends BaseView<SignInViewBody,SignInViewModel> implements SignInConnector{
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
   final bool obscureText = true;
+
 final formKey =GlobalKey<FormState>();
+@override
+  void initState() {
+    super.initState();
+   vmObject.connector =this;
+  }
   @override
   Widget build(BuildContext context) {
     AppConfigProvider provider =Provider.of<AppConfigProvider>(context);
@@ -90,7 +102,7 @@ final formKey =GlobalKey<FormState>();
               CustomElevatedButton(
                 text: AppLocalizations.of(context)!.login,
                 onPressed: () {
-                  loginFun(context,provider);
+                  loginFun(context, provider);
                 },
                 emailController: emailController,
                 passwordController: passwordController,
@@ -109,24 +121,19 @@ final formKey =GlobalKey<FormState>();
       ),
     );
   }
+
   loginFun(BuildContext context,AppConfigProvider provider){
     if(formKey.currentState?.validate()==true){
-      FirebaseFunctions.signInWithEmailAndPassword(
-          emailController.text, passwordController.text, onSuccess: () {
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          HomeScreen.routeName,
-              (route) => false,
-        );
-      }, onError: (message) {
-        showDialog(
-            context: context,
-            builder: (context) => AlertDialogSignIn(
-              provider: provider,
-              message: message,
-            ));
-      });
+      vmObject.signInWithEmailAndPassword(
+          emailController.text, passwordController.text,);
     }
   }
+
+
+  @override
+  initMyViewModel() {
+   return SignInViewModel();
+  }
+
 }
 

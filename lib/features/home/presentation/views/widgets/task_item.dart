@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/core/constant/app_colors.dart';
-import 'package:todo_app/features/home/model/tasks_model.dart';
+import 'package:todo_app/features/home/domain/model/tasks_model.dart';
 import 'package:todo_app/features/home/presentation/views/widgets/custom_slidable_widget.dart';
-import 'package:todo_app/providers/app_config_provider.dart';
+import 'package:todo_app/features/home/domain/providers/app_config_provider.dart';
 
 class TaskItem extends StatelessWidget {
   const TaskItem({required this.model, super.key});
