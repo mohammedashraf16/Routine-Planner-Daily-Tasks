@@ -12,7 +12,7 @@ clone the appropriate branche mentioned below:
 
 ## Getting Started
 
-The Routine-Planner-Daily-Tasks contains the minimal implementation required to create a new library or project. The repository code is preloaded with some basic components like basic app architecture, app theme, constants and required dependencies to create a new project. This will also help in reducing setup & development time by allowing you to use same code pattern and avoid re-writing from scratch.
+The Routine-Planner-Daily-Tasks contains,The code has been written as clean architecture (mvvm) and use repository pattern,use provider as state management, shared preferences to cache theme and language,firebase firestore to store tasks 
 
 ![Brown Fashion Sale With Phone Mockup Instagram Post (3)](https://github.com/user-attachments/assets/433b3379-10a3-436a-9716-e4ba28171210)
 
