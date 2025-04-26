@@ -23,7 +23,7 @@ The Routine-Planner-Daily-Tasks contains,The code has been written as clean arch
 Download or clone this repo by using the link below:
 
 ```
-  https://github.com/mohammedashraf16/Islami_App
+  https://github.com/mohammedashraf16/Routine-Planner-Daily-Tasks
 ```
 
 **Step 2:**
