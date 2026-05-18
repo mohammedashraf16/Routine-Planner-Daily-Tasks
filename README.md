@@ -14,7 +14,9 @@ clone the appropriate branche mentioned below:
 
 The Routine-Planner-Daily-Tasks contains,The code has been written as clean architecture (mvvm) and use repository pattern,use provider as state management, shared preferences to cache theme and language,firebase firestore to store tasks 
 
-![Brown Fashion Sale With Phone Mockup Instagram Post (3)](https://github.com/user-attachments/assets/433b3379-10a3-436a-9716-e4ba28171210)
+<img src="https://github.com/user-attachments/assets/433b3379-10a3-436a-9716-e4ba28171210" 
+     width="800" 
+     height="700">
 
 ## How to Use 
 
@@ -112,9 +114,13 @@ Packages /
 |- firebase_auth
 ```
 ### Samples Of Ui:
-![Brown Fashion Sale With Phone Mockup Instagram Post (2)](https://github.com/user-attachments/assets/b465798b-7291-46fe-b743-d154ed3fb6da)
+<img src="https://github.com/user-attachments/assets/b465798b-7291-46fe-b743-d154ed3fb6da" 
+     width="800" 
+     height="700">
 
-![Brown Fashion Sale With Phone Mockup Instagram Post (4)](https://github.com/user-attachments/assets/af93af32-bdc3-424b-b977-be62a6439811)
+<img src="https://github.com/user-attachments/assets/af93af32-bdc3-424b-b977-be62a6439811" 
+     width="800" 
+     height="700">
 
        
 ## Conclusion
